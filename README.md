@@ -20,4 +20,28 @@ cd dots
 go build -o dots
 
 
+Optional Move the binary to a directory in your $PATH:
+
+For easier access, you can move the compiled binary to /usr/local/bin:
+
+sudo mv dots /usr/local/bin
+
+
+Directory Structure: 
+
+~/.config/.dots/
+├── bashrc
+├── zshrc
+└── vimrc
+
+Important: These filenames should not start with a dot (e.g., bashrc instead of .bashrc). The symlink will handle the dot for you.
+
+
+
+
+
+
+
+
+
 
