@@ -4,43 +4,53 @@
 
 Designed with simplicity in mind, dots lets you keep your config files organized in a single directory, backed by version control, and easily portable across machines. Whether you're setting up a new dev environment or just want clean dotfile hygiene, dots makes it painless.
 
-##  Features
+## Features
 
--  Automatically symlink your dotfiles from a central location.
--  Simple `add`, `link`, `init`, and `sync` commands.
--  Built with Go — fast, easy to maintain.
--  Git integration for remote backup and sharing
+- Automatically symlink your dotfiles from a central location.
+- Simple `add`, `link`, `init`, and `sync` commands.
+- Built with Go — fast, easy to maintain.
+- Git integration for remote backup and sharing.
 
+## Getting Started
 
-##  Getting Started
-
-
+### Clone the Repository and Build the Binary
 
 ```bash
 git clone https://github.com/Ethics03/Dots.git
 cd dots
 go build -o dots
+```
 
-
-
-## Optional Move the binary to a directory in your $PATH:
-
-For easier access, you can move the compiled binary to /usr/local/bin:
+# Optional: Move the Binary to a Directory in Your $PATH
 
 ```bash
 sudo mv dots /usr/local/bin
+```
 
-
-## Directory Structure: 
-
+# Directory Structure
 
 ```bash
 ~/.config/.dots/
 ├── bashrc
 ├── zshrc
 └── vimrc
+```
 
-# Important: These filenames should not start with a dot (e.g., bashrc instead of .bashrc). The symlink will handle the dot for you.
+# Commands 
+
+```bash
+dots link
+```
+Initialize your dotfiles repository. This sets up the .dots directory and prepares it for managing your dotfiles.
+
+
+```bash
+dots edit
+```
+Lets you edit your dotfile in the .dots directory
+
+
+
 
 
 
