@@ -35,6 +35,16 @@ var linkCmd = &cobra.Command{
 			src := filepath.Join(dotsDir, name)
 			desti := filepath.Join(home, target)
 
+				if _, err := os.Stat(src); os.IsNotExist(err) {
+						fmt.Printf("Skipping: source file does not exist: %s\n", src)
+					continue
+				}
+
+				if _, err := os.Lstat(desti); err == nil {
+						fmt.Printf("Destination already exists: %s (skipping)\n", desti)
+						continue
+						}
+
 			err := os.Symlink(src, desti) //this is creating the symlink (./zshrc symlink pointing to zshrc in ./.config/.dots dir)
 			if err != nil {
 				fmt.Printf("Failed to link : %s -> %s: %v", src, desti, err)
