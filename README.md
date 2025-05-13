@@ -15,13 +15,12 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 ##  Getting Started
 
 
-```
-```
+
 ```bash
 git clone https://github.com/Ethics03/Dots.git
 cd dots
 go build -o dots
-```
+
 
 
 ## Optional Move the binary to a directory in your $PATH:
@@ -29,13 +28,6 @@ go build -o dots
 For easier access, you can move the compiled binary to /usr/local/bin:
 
 ```bash
-```
-```bash
-```
-```
-```
-```bash
-```
 sudo mv dots /usr/local/bin
 
 
@@ -43,11 +35,6 @@ sudo mv dots /usr/local/bin
 
 
 ```bash
-```
-```bash
-```
-```
-```
 ~/.config/.dots/
 ├── bashrc
 ├── zshrc
