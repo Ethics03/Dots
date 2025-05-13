@@ -14,27 +14,46 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 
 ##  Getting Started
 
+
+```
+```
 ```bash
 git clone https://github.com/Ethics03/Dots.git
 cd dots
 go build -o dots
+```
 
 
-Optional Move the binary to a directory in your $PATH:
+## Optional Move the binary to a directory in your $PATH:
 
 For easier access, you can move the compiled binary to /usr/local/bin:
 
+```bash
+```
+```bash
+```
+```
+```
+```bash
+```
 sudo mv dots /usr/local/bin
 
 
-Directory Structure: 
+## Directory Structure: 
 
+
+```bash
+```
+```bash
+```
+```
+```
 ~/.config/.dots/
 ├── bashrc
 ├── zshrc
 └── vimrc
 
-Important: These filenames should not start with a dot (e.g., bashrc instead of .bashrc). The symlink will handle the dot for you.
+# Important: These filenames should not start with a dot (e.g., bashrc instead of .bashrc). The symlink will handle the dot for you.
 
 
 
