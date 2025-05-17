@@ -38,21 +38,23 @@ sudo mv dots /usr/local/bin
 
 # Commands 
 
+
+Initialize your dotfiles repository. This sets up the .dots directory and prepares it for managing your dotfiles.
 ```bash
 dots init
 ```
-Initialize your dotfiles repository. This sets up the .dots directory and prepares it for managing your dotfiles.
 
+link makes a symlink with the mentioned dotfile in your .config/.dots/ directory to the main configuration in $HOME
 ```bash
 dots link <dotfile to symlink> eg: bashrc 
 ```
-link makes a symlink with the mentioned dotfile in your .config/.dots/ directory to the main configuration in $HOME
 
 
+Lets you edit your dotfile in the .dots directory
 ```bash
 dots edit
 ```
-Lets you edit your dotfile in the .dots directory
+
 
 
 
