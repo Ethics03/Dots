@@ -39,9 +39,14 @@ sudo mv dots /usr/local/bin
 # Commands 
 
 ```bash
-dots link
+dots init
 ```
 Initialize your dotfiles repository. This sets up the .dots directory and prepares it for managing your dotfiles.
+
+```bash
+dots link <dotfile to symlink> eg: bashrc 
+```
+link makes a symlink with the mentioned dotfile in your .config/.dots/ directory to the main configuration in $HOME
 
 
 ```bash
