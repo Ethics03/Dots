@@ -7,7 +7,7 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 ## Features
 
 - Automatically symlink your dotfiles from a central location.
-- Simple `add`, `link`, `init`, and `sync` commands.
+- Simple `add`, `link`, `init`, `edit` and `sync` commands.
 - Built with Go — fast, easy to maintain.
 - Git integration for remote backup and sharing.
 
