@@ -1,0 +1,11 @@
+# ~/.bashrc - very basic
+
+# Prompt
+PS1='\u@\h:\w\$ '
+
+# Some aliases
+alias ll='ls -l'
+alias ..='cd ..'
+
+# Export editor
+export EDITOR=nvim
