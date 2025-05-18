@@ -28,7 +28,7 @@ var editCmd = &cobra.Command{
 			return
 		}
 
-		dotPath := filepath.Join(home, ".config", ".dots", fileEdit)
+		dotPath := filepath.Join(home, ".config", "dots", fileEdit)
 
 		editor := os.Getenv("EDITOR")
 		if editor == "" {

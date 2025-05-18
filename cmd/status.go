@@ -21,18 +21,22 @@ var statusCmd = &cobra.Command{
 	connected through those symlinks to your dotfiles`,
 	Run: func(cmd *cobra.Command, args []string) {
 		usr,_ := user.Current()
-		dotDr := filepath.Join(usr.HomeDir,".config",".dots")
+		dotDr := filepath.Join(usr.HomeDir,".config","dots")
 
 		files, err := os.ReadDir(dotDr)
 		if err != nil { 
-				fmt.Println("Failed to read ./config/.dots: ",err)
+				fmt.Println("Failed to read ./config/dots: ",err)
 				return
 		}
 
 		fmt.Println("Dotfiles status: ")
-    fmt.Printf("%-40s  ->  %s\n", "Dotfile (home)", "Target (./.config/.dots folder)")
+    fmt.Printf("%-40s  ->  %s\n", "Dotfile (home)", "Target (./.config/dots folder)")
 		for _,f := range files {
+			
 			filename := f.Name()
+			if(filename == "dots.yaml"){
+				continue
+			} else {
 			homePath := filepath.Join(usr.HomeDir,"."+filename)
 			dotPath := filepath.Join(dotDr,filename)
 
@@ -53,6 +57,7 @@ var statusCmd = &cobra.Command{
 		} else {
 			fmt.Printf("Wrong target: %s -> %s (expected %s)\n",homePath,link,dotPath)
 		}
+	}
 	}
 	},
 		}

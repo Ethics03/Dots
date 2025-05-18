@@ -29,7 +29,7 @@ var linkCmd = &cobra.Command{
 			log.Fatal("Cannot find home directory", err)
 		}
 
-		dotsDir := filepath.Join(home, ".config", ".dots")
+		dotsDir := filepath.Join(home, ".config", "dots")
 
 		for name, target := range dotfiles {
 			src := filepath.Join(dotsDir, name)
@@ -47,9 +47,9 @@ var linkCmd = &cobra.Command{
 
 			err := os.Symlink(src, desti) //this is creating the symlink (./zshrc symlink pointing to zshrc in ./.config/.dots dir)
 			if err != nil {
-				fmt.Printf("Failed to link : %s -> %s: %v", src, desti, err)
+				fmt.Printf("Failed to link : %s -> %s: %v\n", src, desti, err)
 			} else {
-				fmt.Printf("Linked %s -> %s", src, desti) // this is printing the output
+				fmt.Printf("Linked %s -> %s\n", src, desti) // this is printing the output
 			}
 		}
 	},
