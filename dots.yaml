@@ -1,0 +1,27 @@
+dotfiles:
+  - source: bashrc
+    target: ~/.bashrc
+
+  - source: zshrc
+    target: ~/.zshrc
+
+  - source: nvim/init.vim 
+    target: ~/.config/nvim/init.vim 
+
+
+  - source: gitconfig
+    target: ~/.gitconfig  
+
+  - source: kitty/
+    target: ~/.config/kitty
+
+  - source: hyprland/ 
+    target: ~/.config/hypr
+
+
+
+
+
+
+
+
