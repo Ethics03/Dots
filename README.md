@@ -13,6 +13,15 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 
 ## Getting Started
 
+### Get started with managing your dotfiles with the Install.sh script
+```bash
+
+chmod +x Install.sh
+./Install.sh
+```
+```
+```
+
 ### Clone the Repository and Build the Binary
 
 ```bash
