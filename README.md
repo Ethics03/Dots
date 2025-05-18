@@ -38,10 +38,17 @@ sudo mv dots /usr/local/bin
 # Directory Structure
 
 ```bash
-~/.config/.dots/
+~/.config/dots/
 ├── bashrc
 ├── zshrc
 └── vimrc
+
+./dots/dots/ #(working dir can contain dotfiles in (dots folder))
+├── bashrc
+├── zshrc
+└── vimrc
+
+
 ```
 
 # Commands 
