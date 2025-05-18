@@ -19,8 +19,7 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 chmod +x Install.sh
 ./Install.sh
 ```
-```
-```
+
 
 ### Clone the Repository and Build the Binary
 
