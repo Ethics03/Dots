@@ -37,7 +37,7 @@ var statusCmd = &cobra.Command{
 			if(filename == "dots.yaml"){
 				continue
 			} else {
-			homePath := filepath.Join(usr.HomeDir,"."+filename)
+			homePath := filepath.Join(usr.HomeDir,filename)
 			dotPath := filepath.Join(dotDr,filename)
 
 			link,err := os.Readlink(homePath)

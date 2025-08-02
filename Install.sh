@@ -23,17 +23,3 @@ else
   echo -e "${GREEN}Config directory already exists: $CONFIG_DIR${RESET}"
 
 fi
-
-# Copy dots folder contents
-echo -e "${BLUE} Copying dotfiles to $CONFIG_DIR${RESET}"
-cp -r "$SRC_DIR/"* "$CONFIG_DIR/" || {
-  echo -e "${RED}Failed to copy dots folder!${RESET}"
-  exit 1
-}
-
-# Copy dots.yaml
-echo -e "${BLUE}📄 Copying dots.yaml to $CONFIG_DIR${RESET}"
-cp "$DOTS_YAML" "$CONFIG_DIR/" || {
-  echo -e "${RED}Failed to copy dots.yaml!${RESET}"
-  exit 1
-}
