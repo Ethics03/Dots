@@ -6,68 +6,134 @@ Designed with simplicity in mind, dots lets you keep your config files organized
 
 ## Features
 
-- Automatically symlink your dotfiles from a central location.
-- Simple `add`, `link`, `init`, `edit` and `sync` commands.
-- Built with Go — fast, easy to maintain.
-- Git integration for remote backup and sharing.
+- **Simple & Fast** - Minimal overhead, instant operations
+- **Git Integration** - Full version control with sync, push, pull commands
+- **Symlink Management** - Automatic symlink creation and tracking
+- **Cross-Machine Sync** - Clone and deploy dotfiles to new machines
+- **Safe Operations** - Built-in checks to prevent data loss
+- **No Config Files** - Filesystem-based tracking, no YAML complexity
 
 ## Getting Started
 
-### Get started with managing your dotfiles with the Install.sh script
-```bash
+### Quick Install
 
+```bash
+git clone https://github.com/Ethics03/Dots.git
+cd Dots
 chmod +x Install.sh
 ./Install.sh
 ```
 
+The install script will:
+- Build the binary
+- Install to `/usr/local/bin`
+- Verify installation
 
-### Clone the Repository and Build the Binary
+### Manual Installation
 
 ```bash
 git clone https://github.com/Ethics03/Dots.git
-cd dots
+cd Dots
 go build -o dots
-```
-
-# Optional: Move the Binary to a Directory in Your $PATH
-
-```bash
 sudo mv dots /usr/local/bin
 ```
 
-# Directory Structure
+## Quick Start
 
 ```bash
-~/.config/dots/
-├── bashrc
-├── zshrc
-└── vimrc
+# Initialize dots
+dots init
 
-./dots/dots/ #(working dir can contain dotfiles in (dots folder))
-├── bashrc
-├── zshrc
-└── vimrc
+# Add your first dotfile
+dots add ~/.bashrc
 
+# Check status
+dots status
 
+# Sync to remote (after setting up git remote)
+cd ~/.config/dots
+git remote add origin <your-repo-url>
+dots sync
 ```
 
-# Commands 
+## Commands
 
+### Core Commands
 
-Initialize your dotfiles repository. This sets up the .dots directory and prepares it for managing your dotfiles.
+**`dots init`** - Initialize dotfiles directory and git repository
 ```bash
 dots init
 ```
 
-link makes a symlink with the mentioned dotfile in your .config/.dots/ directory to the main configuration in $HOME
+**`dots add <file>`** - Add a dotfile to tracking
 ```bash
-dots link <dotfile to symlink> eg: bashrc 
+dots add ~/.bashrc
+dots add ~/.config/nvim
 ```
 
-
-Lets you edit your dotfile in the .dots directory
+**`dots remove <file>`** - Remove a dotfile from tracking
 ```bash
-dots edit
+dots remove bashrc
+```
+
+**`dots link <file>`** - Create symlink for a dotfile
+```bash
+dots link bashrc
+```
+
+**`dots status`** - Check status of all dotfiles
+```bash
+dots status
+```
+
+**`dots edit <file>`** - Edit a dotfile
+```bash
+dots edit bashrc
+```
+
+### Git Commands
+
+**`dots sync`** - Commit and push changes
+```bash
+dots sync
+dots sync -m "Update vim config"
+```
+
+**`dots push`** - Push committed changes
+```bash
+dots push
+```
+
+**`dots pull`** - Pull changes from remote
+```bash
+dots pull
+```
+
+**`dots clone <url>`** - Clone existing dotfiles repository
+```bash
+dots clone https://github.com/username/dotfiles.git
+```
+
+## Directory Structure
+
+After initialization:
+```
+~/.config/dots/
+├── .git/
+├── .gitignore
+├── README.md
+├── bashrc          # Your dotfiles
+├── zshrc
+└── nvim/
+```
+
+Your home directory:
+```
+~/
+├── .bashrc -> ~/.config/dots/bashrc  # Symlinks
+├── .zshrc -> ~/.config/dots/zshrc
+└── .config/
+    └── nvim -> ~/.config/dots/nvim
 ```
 
 
