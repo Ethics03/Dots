@@ -34,9 +34,11 @@ var statusCmd = &cobra.Command{
 		for _,f := range files {
 			
 			filename := f.Name()
-			if(filename == "dots.yaml"){
+			// Skip git directory and meta files
+			if filename == ".git" || filename == ".gitignore" || filename == "README.md" {
 				continue
-			} else {
+			}
+
 			homePath := filepath.Join(usr.HomeDir,filename)
 			dotPath := filepath.Join(dotDr,filename)
 
@@ -57,10 +59,9 @@ var statusCmd = &cobra.Command{
 		} else {
 			fmt.Printf("Wrong target: %s -> %s (expected %s)\n",homePath,link,dotPath)
 		}
-	}
-	}
-	},
 		}
+	},
+}
 
 
 func init() {
