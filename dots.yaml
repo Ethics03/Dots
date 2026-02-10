@@ -5,23 +5,14 @@ dotfiles:
   - source: zshrc
     target: ~/.zshrc
 
-  - source: nvim/init.vim 
-    target: ~/.config/nvim/init.vim 
-
+  - source: nvim/init.vim
+    target: ~/.config/nvim/init.vim
 
   - source: gitconfig
-    target: ~/.gitconfig  
+    target: ~/.gitconfig
 
   - source: kitty/
     target: ~/.config/kitty
 
-  - source: hyprland/ 
+  - source: hyprland/
     target: ~/.config/hypr
-
-
-
-
-
-
-
-
