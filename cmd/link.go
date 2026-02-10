@@ -20,8 +20,8 @@ var linkCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		
 		if len(args) != 1 {
-        fmt.Println("Usage: uriel link <dotfile>")
-        fmt.Println("Example: uriel link bashrc")
+        fmt.Println("Usage: dots link <dotfile>")
+        fmt.Println("Example: dots link bashrc")
         return
     }
 

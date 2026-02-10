@@ -32,7 +32,7 @@ var editCmd = &cobra.Command{
 
 		editor := os.Getenv("EDITOR")
 		if editor == "" {
-			editor = "nano" //fallback EDITOR
+			editor = "vim" //fallback EDITOR
 		}
 
 		editcmd := exec.Command(editor, dotPath)
