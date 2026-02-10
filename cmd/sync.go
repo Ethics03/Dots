@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -107,7 +104,7 @@ func syncDotfiles() error {
 	remoteOutput, err := remoteCmd.Output()
 
 	if err != nil || len(remoteOutput) == 0 {
-		fmt.Println("\n⚠ No remote repository configured")
+		fmt.Println("\nNo remote repository configured")
 		fmt.Println("To add a remote:")
 		fmt.Printf("  cd %s\n", dotsDir)
 		fmt.Println("  git remote add origin <repository-url>")
