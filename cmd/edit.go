@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -16,7 +13,7 @@ import (
 var editCmd = &cobra.Command{
 	Use:   "edit",
 	Short: "edit command lets you edit the dotfile mentioned",
-	Long: `Provide the filepath/filename of the dotfile you want to edit, it won't 
+	Long: `Provide the filepath/filename of the dotfile you want to edit, it won't
 	apply any changes until you do "dots save"`,
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

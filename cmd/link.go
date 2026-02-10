@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -18,15 +15,14 @@ var linkCmd = &cobra.Command{
 	Short: "Create symlinks for tracked dotfiles.",
 	Long:  `Creates symbolic links from your dotfiles repo to their original paths.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		
 		if len(args) != 1 {
-        fmt.Println("Usage: dots link <dotfile>")
-        fmt.Println("Example: dots link bashrc")
-        return
-    }
+			fmt.Println("Usage: dots link <dotfile>")
+			fmt.Println("Example: dots link bashrc")
+			return
+		}
 
-		 name := args[0] // Only one file
-		
+		name := args[0] // Only one file
+
 		home, err := os.UserHomeDir()
 		if err != nil {
 			log.Fatal("Cannot find home directory", err)
@@ -36,26 +32,24 @@ var linkCmd = &cobra.Command{
 		src := filepath.Join(dotsDir, name)
 		desti := filepath.Join(home, name)
 
-			
-			if _, err := os.Stat(src); os.IsNotExist(err) {
-        fmt.Printf("Source file does not exist: %s\n", src)
-        return
-    }
+		if _, err := os.Stat(src); os.IsNotExist(err) {
+			fmt.Printf("Source file does not exist: %s\n", src)
+			return
+		}
 
-     if _, err := os.Lstat(desti); err == nil {
-        fmt.Printf("Destination already exists: %s (skipping)\n", desti)
-        return
-    }
+		if _, err := os.Lstat(desti); err == nil {
+			fmt.Printf("Destination already exists: %s (skipping)\n", desti)
+			return
+		}
 
-    err = os.Symlink(src, desti)
-    if err != nil {
-        fmt.Printf("Failed to link: %s -> %s: %v\n", src, desti, err)
-    } else {
-        fmt.Printf("Linked %s -> %s\n", src, desti)
-    }
-
-		},
-	}
+		err = os.Symlink(src, desti)
+		if err != nil {
+			fmt.Printf("Failed to link: %s -> %s: %v\n", src, desti, err)
+		} else {
+			fmt.Printf("Linked %s -> %s\n", src, desti)
+		}
+	},
+}
 
 func init() {
 	rootCmd.AddCommand(linkCmd)

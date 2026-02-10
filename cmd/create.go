@@ -1,7 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
@@ -52,7 +48,7 @@ to quickly create a Cobra application.`,
 		fmt.Printf("Created file: %s\n", dotpath)
 
 
-		
+
 	},
 }
 

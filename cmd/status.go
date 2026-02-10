@@ -1,7 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
-*/
 package cmd
 
 import (
@@ -20,49 +16,48 @@ var statusCmd = &cobra.Command{
 	Long: `Helps you in checking the current status of all the symlinks and the files
 	connected through those symlinks to your dotfiles`,
 	Run: func(cmd *cobra.Command, args []string) {
-		usr,_ := user.Current()
-		dotDr := filepath.Join(usr.HomeDir,".config","dots")
+		usr, _ := user.Current()
+		dotDr := filepath.Join(usr.HomeDir, ".config", "dots")
 
 		files, err := os.ReadDir(dotDr)
-		if err != nil { 
-				fmt.Println("Failed to read ./config/dots: ",err)
-				return
+		if err != nil {
+			fmt.Println("Failed to read ./config/dots: ", err)
+			return
 		}
 
 		fmt.Println("Dotfiles status: ")
-    fmt.Printf("%-40s  ->  %s\n", "Dotfile (home)", "Target (./.config/dots folder)")
-		for _,f := range files {
-			
+		fmt.Printf("%-40s  ->  %s\n", "Dotfile (home)", "Target (./.config/dots folder)")
+		for _, f := range files {
+
 			filename := f.Name()
 			// Skip git directory and meta files
 			if filename == ".git" || filename == ".gitignore" || filename == "README.md" {
 				continue
 			}
 
-			homePath := filepath.Join(usr.HomeDir,filename)
-			dotPath := filepath.Join(dotDr,filename)
+			homePath := filepath.Join(usr.HomeDir, filename)
+			dotPath := filepath.Join(dotDr, filename)
 
-			link,err := os.Readlink(homePath)
+			link, err := os.Readlink(homePath)
 			if err != nil {
-				if os.IsNotExist(err){
-				fmt.Printf("%-40s  ->  %s\n", "Missing symlink: " + homePath,dotPath)
+				if os.IsNotExist(err) {
+					fmt.Printf("%-40s  ->  %s\n", "Missing symlink: "+homePath, dotPath)
 				} else {
-				fmt.Printf("%-40s  ->  %s\n", "Not a symlink or unreadable: "+homePath,"")
-			}
+					fmt.Printf("%-40s  ->  %s\n", "Not a symlink or unreadable: "+homePath, "")
+				}
 				continue
-		}
-		absTarget,_ := filepath.Abs(dotPath)
-		absLink,_ := filepath.Abs(link)
+			}
+			absTarget, _ := filepath.Abs(dotPath)
+			absLink, _ := filepath.Abs(link)
 
-		if absTarget == absLink {
-			fmt.Printf("%-40s  ->  %s\n", "Status ok: "+homePath, link)
-		} else {
-			fmt.Printf("Wrong target: %s -> %s (expected %s)\n",homePath,link,dotPath)
-		}
+			if absTarget == absLink {
+				fmt.Printf("%-40s  ->  %s\n", "Status ok: "+homePath, link)
+			} else {
+				fmt.Printf("Wrong target: %s -> %s (expected %s)\n", homePath, link, dotPath)
+			}
 		}
 	},
 }
-
 
 func init() {
 	rootCmd.AddCommand(statusCmd)

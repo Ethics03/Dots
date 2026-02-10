@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -13,8 +10,8 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "dots",
 	Short: "A Go-based CLI-Tool to manage your Dotfiles and sync with Git.",
-	Long: `Dots is a minimal, fast, and developer-friendly dotfile manager built in Go. 
-It helps you effortlessly manage, version, and sync your dotfiles using symlinks and Git, 
+	Long: `Dots is a minimal, fast, and developer-friendly dotfile manager built in Go.
+It helps you effortlessly manage, version, and sync your dotfiles using symlinks and Git,
 without the complexity of bloated tools or manual setup..`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
