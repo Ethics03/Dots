@@ -19,24 +19,45 @@ var statusCmd = &cobra.Command{
 		usr, _ := user.Current()
 		dotDr := filepath.Join(usr.HomeDir, ".config", "dots")
 
-		files, err := os.ReadDir(dotDr)
-		if err != nil {
-			fmt.Println("Failed to read ./config/dots: ", err)
+		// Check if dots directory exists
+		if _, err := os.Stat(dotDr); os.IsNotExist(err) {
+			fmt.Println("Dots directory not found. Run 'dots init' first.")
 			return
 		}
 
 		fmt.Println("Dotfiles status: ")
 		fmt.Printf("%-40s  ->  %s\n", "Dotfile (home)", "Target (./.config/dots folder)")
-		for _, f := range files {
 
-			filename := f.Name()
-			// Skip git directory and meta files
-			if filename == ".git" || filename == ".gitignore" || filename == "README.md" {
-				continue
+		// Walk the dots directory to find all dotfiles (including nested ones)
+		filepath.Walk(dotDr, func(path string, info os.FileInfo, err error) error {
+			if err != nil {
+				return nil
 			}
 
-			homePath := filepath.Join(usr.HomeDir, filename)
-			dotPath := filepath.Join(dotDr, filename)
+			// Skip directories
+			if info.IsDir() {
+				return nil
+			}
+
+			filename := info.Name()
+			// Skip git directory and meta files
+			if filename == ".git" || filename == ".gitignore" || filename == "README.md" {
+				return nil
+			}
+
+			// Get relative path from dots directory
+			relPath, err := filepath.Rel(dotDr, path)
+			if err != nil {
+				return nil
+			}
+
+			// Skip if inside .git directory
+			if len(relPath) > 4 && relPath[:4] == ".git" {
+				return nil
+			}
+
+			dotPath := path
+			homePath := filepath.Join(usr.HomeDir, relPath)
 
 			link, err := os.Readlink(homePath)
 			if err != nil {
@@ -45,7 +66,7 @@ var statusCmd = &cobra.Command{
 				} else {
 					fmt.Printf("%-40s  ->  %s\n", "Not a symlink or unreadable: "+homePath, "")
 				}
-				continue
+				return nil
 			}
 			absTarget, _ := filepath.Abs(dotPath)
 			absLink, _ := filepath.Abs(link)
@@ -55,7 +76,9 @@ var statusCmd = &cobra.Command{
 			} else {
 				fmt.Printf("Wrong target: %s -> %s (expected %s)\n", homePath, link, dotPath)
 			}
-		}
+
+			return nil
+		})
 	},
 }
 

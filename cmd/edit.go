@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -19,13 +18,12 @@ var editCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fileEdit := args[0]
 
-		home, err := os.UserHomeDir()
+		// Find the dotfile in dots directory
+		dotPath, _, err := findDotfile(fileEdit)
 		if err != nil {
-			fmt.Println("Could not find home directory")
+			fmt.Printf("Error: %v\n", err)
 			return
 		}
-
-		dotPath := filepath.Join(home, ".config", "dots", fileEdit)
 
 		editor := os.Getenv("EDITOR")
 		if editor == "" {

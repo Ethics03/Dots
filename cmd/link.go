@@ -2,9 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
-	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
@@ -21,19 +19,12 @@ var linkCmd = &cobra.Command{
 			return
 		}
 
-		name := args[0] // Only one file
+		name := args[0]
 
-		home, err := os.UserHomeDir()
+		// Find the dotfile in dots directory
+		src, desti, err := findDotfile(name)
 		if err != nil {
-			log.Fatal("Cannot find home directory", err)
-		}
-
-		dotsDir := filepath.Join(home, ".config", "dots")
-		src := filepath.Join(dotsDir, name)
-		desti := filepath.Join(home, name)
-
-		if _, err := os.Stat(src); os.IsNotExist(err) {
-			fmt.Printf("Source file does not exist: %s\n", src)
+			fmt.Printf("Error: %v\n", err)
 			return
 		}
 

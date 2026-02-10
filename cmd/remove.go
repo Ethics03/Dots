@@ -40,31 +40,17 @@ func init() {
 }
 
 func removeDotfile(filename string) error {
-	home, err := os.UserHomeDir()
+	// Find the dotfile in dots directory
+	dotsPath, homePath, err := findDotfile(filename)
 	if err != nil {
-		return fmt.Errorf("cannot find home directory: %w", err)
+		return err
 	}
-
-	dotsDir := filepath.Join(home, ".config", "dots")
-
-	// Clean the filename (remove leading ./ or ~/)
-	filename = filepath.Clean(filename)
-	filename = filepath.Base(filename)
-
-	// Path in dots directory
-	dotsPath := filepath.Join(dotsDir, filename)
 
 	// Check if file exists in dots directory
 	dotsInfo, err := os.Stat(dotsPath)
 	if err != nil {
-		if os.IsNotExist(err) {
-			return fmt.Errorf("'%s' is not tracked by dots (not found in %s)", filename, dotsDir)
-		}
 		return fmt.Errorf("failed to access dots file: %w", err)
 	}
-
-	// Determine the home path (where symlink should be)
-	homePath := filepath.Join(home, filename)
 
 	// Check if symlink exists
 	linkInfo, err := os.Lstat(homePath)
